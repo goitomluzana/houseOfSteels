@@ -5,7 +5,7 @@ body {
 }
 
 
-h1 {font-family: Times New Roman;
+h1 {font-family: American Typewriter;
     font-size: 60px;
     text-align: center;
     color: black;
@@ -18,15 +18,50 @@ h2 {font-family: Times New Roman;
     color: black;
     margin-top: 0px;
     margin-bottom: -15px;
-    #text-align: center;
+    text-align: center;
     letter-spacing: 2px;
     line-height: 60px;}
+
+h3 {font-family: Times New Roman;
+    font-size: 24px;
+    
+}
             
 p {font-family: Times New Roman;
     font-size: 20px;
-    #line-height: 24px;
+    line-height: 24px;
     color: black;}
 
-a {
-  color: #00B7FF;
-}
+
+a {font-family: arial;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /*make each link act like a mini div box*/
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 0px;}
+
+a:link {color: white;
+    background-color: #1cb2ff;
+    box-shadow: 4px 4px 0px white;}
+
+a:visited {color: white;
+    background-color: #1cb2ff;
+    box-shadow: 4px 4px 0px white;}
+
+a:hover {color: yellow;
+    background-color: #55c5ff;
+    box-shadow: 6px 6px 0px white;
+    transform: translate(-2px, -2px);
+    font-size: normal;}
+
+a:active {color: limegreen;
+    background-color: #2929ea;
+    box-shadow: 0px 0px 0px white;
+    transform: translate(2px, 2px);}
