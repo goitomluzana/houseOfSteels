@@ -1,0 +1,106 @@
+create table customer(
+    customer_id     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstname       VARCHAR(30) NOT NULL,
+    lastname        VARCHAR(30) NOT NULL,
+    email           VARCHAR(30) NOT NULL,
+    phone           VARCHAR(25) NOT NULL,
+    address1        VARCHAR(30) NOT NULL,
+    address2        VARCHAR(30),
+    city            VARCHAR(30) NOT NULL,
+    state           VARCHAR(20) NOT NULL,
+    zip             VARCHAR(10) NOT NULL
+);
+
+INSERT INTO customer(firstname, lastname, email, phone, address1, city, state, zip) values ("Luzana", "Girmay", "luzz.anna12@gmail.com", "123-456-7890", "123 N State St.", "Chicago", "IL", "12345");
+
+INSERT INTO customer(firstname, lastname, email, phone, address1, city, state, zip) values ("Yafet", "Girmay", "yafet1992@gmail.com", "987-654-3210", "456 S King St.", "Lexington", "KY", "54321");
+
+INSERT INTO customer(firstname, lastname, email, phone, address1, city, state, zip) values ("Noel", "Girmay", "noelgirmay@gmail.com", "543-216-7890", "789 E Sacramento St.", "San Francisco", "CA", "90876");
+
+INSERT INTO customer(firstname, lastname, email, phone, address1, city, state, zip) values ("Tedros", "Teklay", "tedros@gmail.com", "678-354-9876", "48756 W Pensacola St.", "Pensacola", "FL", "34567");
+
+INSERT INTO customer(firstname, lastname, email, phone, address1, city, state, zip) values ("Kidus", "Girmay", "kidus@gmail.com", "903-759-3673", "543 N Miami St.", "Miami", "FL", "64568");
+
+INSERT INTO customer(firstname, lastname, email, phone, address1, city, state, zip) values ("Abel", "Teklay", "abel@gmail.com", "192-928-7396", "321 S diego St.", "San Diego", "CA", "64568");
+
+create table supplier(
+    supplier_id     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    companyname     VARCHAR(30) NOT NULL,
+    phone           VARCHAR(20) NOT NULL,
+    website         VARCHAR(20) NOT NULL
+);
+
+INSERT INTO supplier(companyname, phone, website) values ("Yunael", "192-384-5867", "www.yunael.com");
+
+INSERT INTO supplier(companyname, phone, website) values ("Eliab", "918-726-5344", "www.eliab.com");
+
+INSERT INTO supplier(companyname, phone, website) values ("Chris", "827-635-4098", "www.chris.com");
+
+INSERT INTO supplier(companyname, phone, website) values ("Eliana", "546-191-2329", "www.eliana.com");
+
+INSERT INTO supplier(companyname, phone, website) values ("Yeabsira", "251-119-2329", "www.yeabsira.com");
+
+INSERT INTO supplier(companyname, phone, website) values ("Michael", "152-991-2329", "www.michael.com");
+
+create table product(
+    product_id          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    prodname            VARCHAR(30) NOT NULL,
+    productimage        VARCHAR(50) NOT NULL,
+    prodtype            VARCHAR(30) NOT NULL,
+    proddescribtion     VARCHAR(5000) NOT NULL,
+    prodprice           DECIMAL(8,2) NOT NULL,
+    status              VARCHAR(10) NOT NULL,
+    quantityinstock     INT NOT NULL,
+    supplier_id         INT NOT NULL, 
+    FOREIGN KEY(supplier_id) REFERENCES supplier(supplier_id) ON DELETE CASCADE ON UPDATE RESTRICT
+);
+
+INSERT INTO product(prodname, productimage, prodtype, proddescribtion, prodprice, status, quantityinstock, supplier_id) values ("Alloy Steel", "alloy_steel.jpg", "Steel", "Alloy steel is steel that is alloyed with a variety of elements in total amounts between 1.0% and 50% by weight to improve its mechanical properties.", 25024.99, "Available", 500, 1);
+
+INSERT INTO product(prodname, productimage, prodtype, proddescribtion, prodprice, status, quantityinstock, supplier_id) values ("Carbon Steel", "carbon_steel.jpg", "Steel", "Carbon steel is a steel with carbon content up to 2.1% by weight.", 5369.99, "Available", 500, 2);
+
+INSERT INTO product(prodname, productimage, prodtype, proddescribtion, prodprice, status, quantityinstock, supplier_id) values ("Tool Steel", "tool_steel.jpg", "Steel", "Tool steel refers to a variety of carbon and alloy steels that are particularly well-suited to be made into tools. ", 9999.99, "Available", 500, 3);
+
+INSERT INTO product(prodname, productimage, prodtype, proddescribtion, prodprice, status, quantityinstock, supplier_id) values ("Stainless Steel", "stainless_steel.jpg", "Steel", "Stainless steel is a family of iron-based alloys that contain a minimum of approximately 11% chromium, a composition that prevents the iron from rusting as well as providing heat resistant properties.", 699.99, "Available", 500, 4);
+
+INSERT INTO product(prodname, productimage, prodtype, proddescribtion, prodprice, status, quantityinstock, supplier_id) values ("Brass", "brass.jpg", "Steel", "Brass is an alloy of copper and zinc, in proportions which can be varied to achieve varying mechanical and electrical properties.", 101182.99, "Available", 500, 5);
+
+
+
+create table saleorder (
+	order_id         INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	customer_id          INT NOT NULL,
+	saledate             DATE NOT NULL,	
+	FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE ON UPDATE RESTRICT
+	);
+    
+INSERT INTO saleorder(customer_id, saledate) values (1, '2020-01-16');
+INSERT INTO saleorder(customer_id, saledate) values (2, '2020-01-24');
+INSERT INTO saleorder(customer_id, saledate) values (3, '2020-02-8');
+INSERT INTO saleorder(customer_id, saledate) values (4, '2020-02-13');
+INSERT INTO saleorder(customer_id, saledate) values (5, '2020-03-01');
+INSERT INTO saleorder(customer_id, saledate) values (6, '2020-03-08');
+
+
+    
+create table orderdetail (
+    orderdetail_id      INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	order_id            INT NOT NULL,
+	product_id          INT NOT NULL,
+    prodqty             INT NOT NULL,
+	saleprice           DECIMAL(8,2) NOT NULL,
+	FOREIGN KEY (order_id) REFERENCES saleorder(order_id) ON DELETE CASCADE ON UPDATE RESTRICT,
+	FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE ON UPDATE RESTRICT
+	);
+    
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (1, 1, 3, 75074.97);
+
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (2, 2, 6, 32219.94);
+
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (3, 3, 11, 109999.89);
+
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (4, 4, 10, 6999.99);
+
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (5, 5, 2, 202365.98);
+
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (6, 3, 25, 249999.75);

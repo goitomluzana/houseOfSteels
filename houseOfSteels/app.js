@@ -5,10 +5,28 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var layouts = require('express-ejs-layouts');
 
+const mariadb = require('mariadb/callback');
+
+const db = mariadb.createConnection ({host: 'eagle.cdm.depaul.edu', user: 'lgirmay', password: 'lgirmay', database: 'houseofsteeldb'});
+
+// connect to database
+db.connect((err) => {
+  if (err) {
+    console.log("not connected due to error: " + err);
+  } else
+	{
+    console.log("connected to db");
+  }
+});
+
+global.db = db;
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
+var dynaRouter = require('./routes/dyna');
 
 
 var app = express();
@@ -28,6 +46,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
+app.use('/dyna', dynaRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
