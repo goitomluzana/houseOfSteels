@@ -1,0 +1,10 @@
+<form action="/saleorder/save" method="post" >
+    
+	<p><input type="hidden" name="order_id" value=<%= saleorder.order_id %> required> </p>
+    
+	<p>Customer ID : <input type="text" name="customer_id" value= "<%= saleorder.customer_id %>" required> </p>
+    
+    <p>Sale Date : <input type="text" name="saledate" value= "<%= saleorder.saledate %>" required> </p>
+    
+	<button type="submit">Update Sale Order</button>
+</form>

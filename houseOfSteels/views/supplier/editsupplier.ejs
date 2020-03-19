@@ -1,0 +1,12 @@
+<form action="/supplier/save" method="post" >
+    
+	<p><input type="hidden" name="supplier_id" value=<%= supplier.supplier_id %> required> </p>
+    
+	<p>Company Name : <input type="text" name="companyname" value= "<%= supplier.companyname %>" required> </p>
+    
+    <p>Phone Number : <input type="text" name="phone" value= "<%= supplier.phone %>" required> </p>
+    
+    <p>Website  : <input type="text" name="website" value= "<%= supplier.website %>" required> </p>
+    
+	<button type="submit">Update Supplier</button>
+</form>

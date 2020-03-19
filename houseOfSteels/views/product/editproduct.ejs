@@ -1,0 +1,29 @@
+<form action="/product/save" method="post" >
+    
+	<p><input type="hidden" name="product_id" value=<%= product.product_id %> required> </p>
+    
+	<p>Product Name: <input type="text" name="prodname" value= "<%= product.prodname %>" required> </p>
+    
+  	<p>Product Image: <input type="text" name="productimage" value=<%= product.productimage %> required> </p>
+    
+    <p>Supplier ID: <input type="number" name="supplier_id" value=<%= product.supplier_id %> required> </p>
+    
+    <p>Product Type: <input type="text" name="prodtype" value=<%= product.prodtype %> required> </p>
+    
+    <p>Description: <input type="text" name="proddescribtion" value=<%= product.proddescribtion %> required> </p>
+
+    <p>Product Status: <select  name="status"  required>
+                        <option selected><%= product.status %></option>
+                        <option>Available</option>
+                        <option>Discontinued</option>
+                        <option>Future Plan</option>
+                        <option>On Order</option>
+			    <option>Out of Stock</option>
+                    </select> </p>
+        
+    <p>Price: <input type="text" name="prodprice" value=<%= product.prodprice %> required> </p>
+    
+    <p>Quantity in Stock: <input type="number" name="quantityinstock" value=<%= product.quantityinstock %> required> </p>
+  
+	<button type="submit">Update Product</button>
+</form>

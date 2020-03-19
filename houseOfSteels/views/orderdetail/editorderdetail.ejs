@@ -1,0 +1,14 @@
+<form action="/orderdetail/save" method="post" >
+    
+	<p><input type="hidden" name="orderdetail_id" value=<%= orderdetail.orderdetail_id %> required> </p>
+    
+	<p>Order ID : <input type="text" name="order_id" value= "<%= orderdetail.order_id %>" required> </p>
+    
+    <p>Product ID : <input type="text" name="product_id" value= "<%= orderdetail.product_id %>" required> </p>
+    
+    <p>Product Quantity : <input type="text" name="prodqty" value= "<%= orderdetail.prodqty %>" required> </p>
+    
+    <p>Sale Price : <input type="text" name="saleprice" value= "<%= orderdetail.saleprice %>" required> </p>
+    
+	<button type="submit">Update Order Detail</button>
+</form>

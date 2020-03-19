@@ -1,0 +1,31 @@
+<h3> Add a New product </h3>
+<form action="/product" method="post" >
+    
+	<p>Product Name: <input type="text" name="prodname" required> </p>
+    
+  	<p>Product Image: <input type="text" name="productimage" required> </p>
+    
+    <p>Supplier ID: <input type="number" name="supplier_id" required> </p>
+    
+    <p>Product Type: <input type="text" name="prodtype" required> </p>
+    
+	<p>Description: <textarea name="proddescribtion" rows="10" cols="30">Product Description</textarea> </p>
+    
+
+    
+    <p>Product Status: <select  name="status"  required>
+                        <option selected disabled>Choose Status</option>
+                        <option>Available</option>
+                        <option>Discontinued</option>
+                        <option>Future Plan</option>
+                        <option>On Order</option>
+						<option>Out of Stock</option>
+                    </select> 
+    </p>
+    
+    <p>Price: <input type="text" name="prodprice" required>	 </p>
+    
+    <p>Quantity in Stock: <input type="number" name="quantityinstock" required> </p>
+
+	<button type="submit">Add Product</button>
+</form>

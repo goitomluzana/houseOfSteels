@@ -1,0 +1,30 @@
+<% if (customers.length > 0) {%>
+<table border = 1>
+   <tr>
+       <th>First Name</th>
+       <th>Last Name </th>
+       <th>Email</th> 
+       <th>Phone</th>
+       <th colspan=3>Actions</th>
+      
+    </tr>
+      <% customers.forEach((customer, index) => { %>
+                    <tr>
+                        <td><%= customer.firstname %></td>
+                        <td><%= customer.lastname %></td>
+                        <td><%= customer.email %></td>
+                        <td><%= customer.phone %></td>
+                        <td><a href='/customer/<%= customer.customer_id %>'> See More</a></td>
+                        <td><a href='/customer/<%= customer.customer_id %>/edit'> Edit</a></td>
+                        <td><a href='/customer/<%= customer.customer_id %>/delete'onclick="return confirm('Are you sure you want to delete this item?');"> Delete</a></td>
+                    </tr>
+                
+         
+        <% }); %>
+        </table>
+        <% } else { %>
+            <p> No More Customer </p>
+        <% } %>
+
+<br><br>
+<a href = "/customer/addcustomer"> Add New Customer </a>

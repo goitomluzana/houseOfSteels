@@ -1,0 +1,23 @@
+<form action="/customer/save" method="post" >
+    
+	<p><input type="hidden" name="customer_id" value=<%= customer.customer_id %> required> </p>
+    
+	<p>First Name: <input type="text" name="firstname" value= "<%= customer.firstname %>" required> </p>
+    
+        
+	<p>Last Name: <input type="text" name="lastname" value= "<%= customer.lastname %>" required> </p>
+        
+	<p>Email: <input type="text" name="email" value= "<%= customer.email %>" required> </p>
+        
+	<p>Phone Number: <input type="text" name="phone" value= "<%= customer.phone %>" required> </p>
+        
+	<p>Address : <input type="text" name="address1" value= "<%= customer.address1 %>" required> </p>
+        
+	<p>City : <input type="text" name="city" value= "<%= customer.city %>" required> </p>
+        
+	<p>State : <input type="text" name="state" value= "<%= customer.state %>" required> </p>
+    
+    <p>Zip : <input type="text" name="zip" value= "<%= customer.zip %>" required> </p>
+  
+	<button type="submit">Update Customer</button>
+</form>

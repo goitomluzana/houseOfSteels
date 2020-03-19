@@ -1,0 +1,28 @@
+<% if (suppliers.length > 0) {%>
+<table border = 1>
+   <tr>
+       <th>Company Name</th>
+       <th>Phone </th>
+       <th>Website</th> 
+       <th colspan=3>Actions</th>
+      
+    </tr>
+      <% suppliers.forEach((supplier, index) => { %>
+                    <tr>
+                        <td><%= supplier.companyname %></td>
+                        <td><%= supplier.phone %></td>
+                        <td><%= supplier.website %></td>
+                        <td><a href='/supplier/<%= supplier.supplier_id %>'> See More</a></td>
+                        <td><a href='/supplier/<%= supplier.supplier_id %>/edit'> Edit</a></td>
+                        <td><a href='/supplier/<%= supplier.supplier_id %>/delete'onclick="return confirm('Are you sure you want to delete this item?');"> Delete</a></td>
+                    </tr>
+                
+         
+        <% }); %>
+        </table>
+        <% } else { %>
+            <p> No More Supplier </p>
+        <% } %>
+
+<br><br>
+<a href = "/supplier/addsupplier"> Add New Supplier </a>

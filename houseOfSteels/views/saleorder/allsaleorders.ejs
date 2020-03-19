@@ -1,0 +1,25 @@
+<% if (saleorders.length > 0) {%>
+<table border = 1>
+   <tr>
+       <th>Sale Date </th> 
+       <th>Customer ID</th>
+       <th colspan=3>Actions</th>
+    </tr>
+      <% saleorders.forEach((saleorder, index) => { %>
+                    <tr>
+                        <td><%= saleorder.saledate %></td>
+                        <td><%= saleorder.customer_id %></td>
+                        <td><a href='/saleorder/<%= saleorder.order_id %>'> See More</a></td>
+                        <td><a href='/saleorder/<%= saleorder.order_id %>/edit'> Edit</a></td>
+                        <td><a href='/saleorder/<%= saleorder.order_id %>/delete'onclick="return confirm('Are you sure you want to delete this item?');"> Delete</a></td>
+                    </tr>
+                
+         
+        <% }); %>
+        </table>
+        <% } else { %>
+            <p> No More Supplier </p>
+        <% } %>
+
+<br><br>
+<a href = "/saleorder/addsaleorder"> Add New Sale Order </a>

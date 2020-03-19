@@ -1,0 +1,27 @@
+<% if (orderdetails.length > 0) {%>
+<table border = 1>
+   <tr>
+       <th>Product ID </th> 
+       <th>Product Quantity </th>
+       <th>Sale Price </th>
+       <th colspan=3>Actions</th>
+    </tr>
+      <% orderdetails.forEach((orderdetail, index) => { %>
+                    <tr>
+                        <td><%= orderdetail.product_id %></td>
+                        <td><%= orderdetail.prodqty %></td>
+                        <td><%= "$" + orderdetail.saleprice %></td>
+                        <td><a href='/orderdetail/<%= orderdetail.orderdetail_id %>'> See More</a></td>
+                        <td><a href='/orderdetail/<%= orderdetail.orderdetail_id %>/edit'> Edit</a></td>
+                        <td><a href='/orderdetail/<%= orderdetail.orderdetail_id %>/delete'onclick="return confirm('Are you sure you want to delete this item?');"> Delete</a></td>
+                    </tr>
+                
+         
+        <% }); %>
+        </table>
+        <% } else { %>
+            <p> No More Supplier </p>
+        <% } %>
+
+<br><br>
+<a href = "/orderdetail/addorderdetail"> Add New Order Detail </a>

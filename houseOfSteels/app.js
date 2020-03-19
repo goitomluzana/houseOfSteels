@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var layouts = require('express-ejs-layouts');
-
 const mariadb = require('mariadb/callback');
 
 const db = mariadb.createConnection ({host: 'eagle.cdm.depaul.edu', user: 'lgirmay', password: 'lgirmay', database: 'houseofsteeldb'});
@@ -22,11 +21,19 @@ db.connect((err) => {
 global.db = db;
 
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
 var dynaRouter = require('./routes/dyna');
+var productRouter = require('./routes/product');
+var customerRouter = require('./routes/customer');
+var supplierRouter = require('./routes/supplier');
+var saleorderRouter = require('./routes/saleorder');
+var orderdetailRouter = require('./routes/orderdetail');
+var privacyRouter = require('./routes/privacy');
+var helpRouter = require('./routes/help');
 
 
 var app = express();
@@ -46,7 +53,14 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
-app.use('/dyna', dynaRouter)
+app.use('/dyna', dynaRouter);
+app.use('/product', productRouter);
+app.use('/customer', customerRouter);
+app.use('/supplier', supplierRouter);
+app.use('/saleorder', saleorderRouter);
+app.use('/orderdetail', orderdetailRouter);
+app.use('/privacy', privacyRouter);
+app.use('/help', helpRouter);
 
 
 // catch 404 and forward to error handler
