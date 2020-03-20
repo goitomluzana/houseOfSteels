@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var layouts = require('express-ejs-layouts');
 const mariadb = require('mariadb/callback');
+const session = require('express-session');
 
 const cart = [];
 global.cart = cart;
@@ -42,6 +43,8 @@ var catalogRouter = require('./routes/catalog');
 
 
 var app = express();
+app.use(session({secret: 'HouseOfSteelSecret'}));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
