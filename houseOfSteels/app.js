@@ -6,6 +6,10 @@ var logger = require('morgan');
 var layouts = require('express-ejs-layouts');
 const mariadb = require('mariadb/callback');
 
+const cart = [];
+global.cart = cart;
+
+
 const db = mariadb.createConnection ({host: 'eagle.cdm.depaul.edu', user: 'lgirmay', password: 'lgirmay', database: 'houseofsteeldb'});
 
 // connect to database
@@ -20,13 +24,11 @@ db.connect((err) => {
 
 global.db = db;
 
-
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
-var dynaRouter = require('./routes/dyna');
+//var dynaRouter = require('./routes/dyna');
 var productRouter = require('./routes/product');
 var customerRouter = require('./routes/customer');
 var supplierRouter = require('./routes/supplier');
@@ -34,6 +36,9 @@ var saleorderRouter = require('./routes/saleorder');
 var orderdetailRouter = require('./routes/orderdetail');
 var privacyRouter = require('./routes/privacy');
 var helpRouter = require('./routes/help');
+var catalogRouter = require('./routes/catalog');
+//var customerRouter = require('./routes/customer');
+
 
 
 var app = express();
@@ -53,7 +58,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
-app.use('/dyna', dynaRouter);
+//app.use('/dyna', dynaRouter);
 app.use('/product', productRouter);
 app.use('/customer', customerRouter);
 app.use('/supplier', supplierRouter);
@@ -61,6 +66,9 @@ app.use('/saleorder', saleorderRouter);
 app.use('/orderdetail', orderdetailRouter);
 app.use('/privacy', privacyRouter);
 app.use('/help', helpRouter);
+app.use('/catalog', catalogRouter);
+//app.use('/customer', customerRouter);
+
 
 
 // catch 404 and forward to error handler

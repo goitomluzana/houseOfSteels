@@ -1,5 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcryptjs');
+
+// ==================================================
+// Route Provide Login Window
+// ==================================================
+router.get('/login', function(req, res, next) {
+	res.render('customer/login', {message: "Please Login"});
+});
+
 
 // =============================
 // Route to add a new customer
@@ -8,6 +17,7 @@ var router = express.Router();
 router.get('/addcustomer', function(req, res, next) {
 	res.render('customer/addcustomer');
 });
+
 
 // ==================================================
 // Route to edit one specific customer. Notice the view is editcustomer
@@ -25,6 +35,14 @@ router.get('/:customerid/edit', function(req, res, next) {
 		} 
  	});
 });
+
+// ==================================================
+// Route Enable Registration
+// ==================================================
+router.get('/register', function(req, res, next) {
+	res.render('customer/register');
+});
+
 
 
 // ============================================================
@@ -80,10 +98,30 @@ router.get('/:customerid', function(req, res, next) {
  	});
 });
 
+// ==================================================
+// Route Save Customer Registration
+// ==================================================
+router.post('/', function(req, res, next) {
+  let insertquery = "INSERT INTO customer(firstname, lastname, email, phone, address1, city, state, zip, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+    
+	bcrypt.genSalt(10, (err, salt) => {
+		bcrypt.hash(req.body.password, salt, (err, hash) => {
+			if(err) { res.render('error');}
 
-// ==================================================================
-// Route to recieve the added customer and save to database
-// ================================================================== 
+			db.query(insertquery,[req.body.firstname, req.body.lastname, req.body.email,req.body.phone,req.body.address1, req.body.city, req.body.state, req.body.zip, req.body.username, hash],(err, result) => {
+				if (err) {res.render('error');
+                         } else {
+                             res.redirect('/');}
+			});
+		});
+	});
+});
+
+
+
+//================================================================
+// Route to recieve the added customer and save to database and
+//================================================================ 
 
 router.post('/', function(req, res, next) {
 
@@ -99,6 +137,7 @@ let insertquery = "INSERT INTO customer (firstname, lastname, email, phone, addr
 		
 		});
 });
+
 
 // ==================================================
 // Route to save edited customer. 
@@ -117,5 +156,35 @@ res.redirect('/customer');
 			}
 		});
 });
+
+// ==================================================
+// Route Check Login Credentials
+// ==================================================
+router.post('/login', function(req, res, next) {
+  let query = "select password from customer WHERE username = '" + req.body.username + "'"; 
+
+  // execute query
+  db.query(query, (err, result) => {
+		if (err) {res.render('error');} 
+		else {
+			if(result[0])
+				{
+				// Username was correct
+				// Check if password is correct
+				bcrypt.compare(req.body.password, result[0].password, function(err, result) {
+					if(result) {
+						// passwords match
+						res.redirect('/');
+					} else {
+						// password do not match
+						res.render('customer/login', {message: "Wrong Password"});
+					}
+					});
+				}
+			else {res.render('customer/login', {message: "Wrong Username"});}
+		} 
+ 	});
+});
+
 
 module.exports = router;

@@ -110,8 +110,9 @@ db.query(updatequery,[req.body.order_id,req.body.product_id,req.body.prodqty,req
 	if (err) {
 			console.log(err);
 			res.render('error');
-			} else {
-res.redirect('/orderdetail');
+			}
+    else {
+        res.redirect('/orderdetail');
 			}
 		});
 });

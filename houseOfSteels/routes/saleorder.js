@@ -9,23 +9,6 @@ router.get('/addsaleorder', function(req, res, next) {
 	res.render('saleorder/addsaleorder');
 });
 
-// ==================================================
-// Route to edit one specific saleorder. Notice the view is editsaleorder
-// ==================================================
-router.get('/:saleorderid/edit', function(req, res, next) {
-  let query = "SELECT order_id, customer_id, saledate from saleorder WHERE order_id = " + req.params.saleorderid ; 
-
-  // execute query
-  db.query(query, (err, result) => {
-		if (err) {
-			console.log(err);
-			res.render('error');
-		} else {
-			res.render('saleorder/editsaleorder', {saleorder: result[0] });
-		} 
- 	});
-});
-
 
 //================================================================
 // Route to list all Sale Orders. Notice the view is allsaleorders
@@ -41,6 +24,23 @@ router.get('/', function(req, res, next) {
 			res.render('error');
 		}
 	res.render('saleorder/allsaleorders', {saleorders: result });
+ 	});
+});
+
+// ==================================================
+// Route to edit one specific saleorder. Notice the view is editsaleorder
+// ==================================================
+router.get('/:saleorderid/edit', function(req, res, next) {
+  let query = "SELECT order_id, customer_id, saledate from saleorder WHERE order_id = " + req.params.saleorderid ; 
+
+  // execute query
+  db.query(query, (err, result) => {
+		if (err) {
+			console.log(err);
+			res.render('error');
+		} else {
+			res.render('saleorder/editsaleorder', {saleorder: result[0] });
+		} 
  	});
 });
 
@@ -107,9 +107,9 @@ router.post('/save', function(req, res, next) {
 let updatequery = "UPDATE saleorder set customer_id = ?,saledate = ? WHERE orderd_id = " + req.body.orderd_id; 
 
 db.query(updatequery,[req.body.customer_id,req.body.saledate],(err, result) => {
-	if (err) {
-			console.log(err);
-			res.render('error');
+    if (err) {
+            console.log(err);
+            res.render('error');
 			} else {
 res.redirect('/saleorder');
 			}
