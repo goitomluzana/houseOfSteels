@@ -161,7 +161,7 @@ res.redirect('/customer');
 // Route Check Login Credentials
 // ==================================================
 router.post('/login', function(req, res, next) {
-  let query = "select password from customer WHERE username = '" + req.body.username + "'"; 
+  let query = "select customer_id, firstname, lastname, password from customer WHERE username = '" + req.body.username + "'"; 
 
   // execute query
   db.query(query, (err, result) => {
@@ -171,20 +171,27 @@ router.post('/login', function(req, res, next) {
 				{
 				// Username was correct
 				// Check if password is correct
-				bcrypt.compare(req.body.password, result[0].password, function(err, result) {
-					if(result) {
+				bcrypt.compare(req.body.password, result[0].password, function(err, result1) {
+					if(result1) {
+						var custid = result[0].customer_id;
+						req.session.customer_id = custid;
+
+						var custname = result[0].firstname + " "+ result[0].firstname;
+						req.session.custname = custname;
+						
 						// passwords match
 						res.redirect('/');
 					} else {
 						// password do not match
-						res.render('customer/login', {message: "Wrong Password"});
+						res.render('login', {message: "Wrong Password"});
 					}
 					});
 				}
-			else {res.render('customer/login', {message: "Wrong Username"});}
+			else {res.render('login', {message: "Wrong Username"});}
 		} 
  	});
 });
+
 
 
 module.exports = router;

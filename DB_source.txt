@@ -74,12 +74,12 @@ create table saleorder (
 	FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE ON UPDATE RESTRICT
 	);
     
-INSERT INTO saleorder(customer_id, saledate) values (1, '2020-01-16');
-INSERT INTO saleorder(customer_id, saledate) values (2, '2020-01-24');
-INSERT INTO saleorder(customer_id, saledate) values (3, '2020-02-8');
-INSERT INTO saleorder(customer_id, saledate) values (4, '2020-02-13');
-INSERT INTO saleorder(customer_id, saledate) values (5, '2020-03-01');
-INSERT INTO saleorder(customer_id, saledate) values (6, '2020-03-08');
+INSERT INTO saleorder(customer_id, saledate) values (27, '2020-01-16');
+INSERT INTO saleorder(customer_id, saledate) values (28, '2020-01-24');
+INSERT INTO saleorder(customer_id, saledate) values (29, '2020-02-8');
+INSERT INTO saleorder(customer_id, saledate) values (30, '2020-02-13');
+INSERT INTO saleorder(customer_id, saledate) values (31, '2020-03-01');
+INSERT INTO saleorder(customer_id, saledate) values (27, '2020-03-08');
 
 
     
@@ -93,14 +93,14 @@ create table orderdetail (
 	FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE ON UPDATE RESTRICT
 	);
     
-INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (4, 10, 3, 75074.97);
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (25, 4, 3, 75074.97);
 
-INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (5, 9, 6, 32219.94);
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (26, 5, 6, 32219.94);
 
-INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (6, 8, 11, 109999.89);
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (27, 6, 11, 109999.89);
 
-INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (7, 7, 10, 6999.99);
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (28, 7, 10, 6999.99);
 
-INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (10, 6, 2, 202365.98);
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (29, 8, 2, 202365.98);
 
-INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (6, 5, 25, 249999.75);
+INSERT INTO orderdetail(order_id, product_id, prodqty, saleprice) values (30, 9, 25, 249999.75);
